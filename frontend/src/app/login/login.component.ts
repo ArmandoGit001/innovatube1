@@ -40,6 +40,9 @@ export class LoginComponent {
         next: res => {
           alert('Login exitoso');
           console.log(res);
+          const userName = this.loginForm.value.user_name ?? '';
+          localStorage.setItem('user_name', userName);
+          this.router.navigate(['/home']);
         },
         error: err => {
           alert('Credenciales incorrectas');

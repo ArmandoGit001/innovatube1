@@ -5,7 +5,7 @@ import {
   __spreadValues
 } from "./chunk-YHCV7DAQ.js";
 
-// node_modules/zone.js/fesm2015/zone-node.js
+// ../../node_modules/zone.js/fesm2015/zone-node.js
 var global = globalThis;
 function __symbol__(name) {
   const symbolPrefix = global["__Zone_symbol_prefix"] || "__zone_symbol__";
