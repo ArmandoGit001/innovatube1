@@ -1,1 +1,45 @@
-<p>register works!</p>
+<mat-card>
+    <h2>Registro</h2>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="name" required />
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Apellido</mat-label>
+        <input matInput formControlName="last_name" required />
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Usuario</mat-label>
+        <input matInput formControlName="user_name" required />
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" type="email" required />
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Contraseña</mat-label>
+        <input matInput formControlName="password" type="password" required />
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Repetir Contraseña</mat-label>
+        <input matInput formControlName="password2" type="password" required />
+      </mat-form-field>
+  
+      <p *ngIf="form.errors?.['noCoinciden']" style="color:red">
+        Las contraseñas no coinciden.
+      </p>
+  
+      <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+        Registrarse
+      </button>
+    </form>
+  
+    <p *ngIf="mensaje">{{ mensaje }}</p>
+  </mat-card>
+  

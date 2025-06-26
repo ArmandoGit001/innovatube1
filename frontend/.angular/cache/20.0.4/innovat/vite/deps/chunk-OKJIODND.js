@@ -1,28 +1,17 @@
-import { createRequire } from 'module';const require = createRequire(import.meta.url);
 import {
   MediaMatcher
-} from "./chunk-X7UV6EOU.js";
+} from "./chunk-JF66M7Z6.js";
 import {
   ANIMATION_MODULE_TYPE,
   InjectionToken,
   NgModule,
   inject,
-  require_cjs,
-  require_operators,
   setClassMetadata,
   ɵɵdefineInjector,
   ɵɵdefineNgModule
-} from "./chunk-AKK7PD4G.js";
-import {
-  __toESM
-} from "./chunk-YHCV7DAQ.js";
+} from "./chunk-HD74KYYT.js";
 
-// ../../node_modules/@angular/cdk/fesm2022/coercion.mjs
-function coerceBooleanProperty(value) {
-  return value != null && `${value}` !== "false";
-}
-
-// ../../node_modules/@angular/cdk/fesm2022/scrolling-BkvA05C8.mjs
+// node_modules/@angular/cdk/fesm2022/scrolling-BkvA05C8.mjs
 var RtlScrollAxisType;
 (function(RtlScrollAxisType2) {
   RtlScrollAxisType2[RtlScrollAxisType2["NORMAL"] = 0] = "NORMAL";
@@ -30,7 +19,7 @@ var RtlScrollAxisType;
   RtlScrollAxisType2[RtlScrollAxisType2["INVERTED"] = 2] = "INVERTED";
 })(RtlScrollAxisType || (RtlScrollAxisType = {}));
 
-// ../../node_modules/@angular/cdk/fesm2022/platform.mjs
+// node_modules/@angular/cdk/fesm2022/platform.mjs
 var PlatformModule = class _PlatformModule {
   static ɵfac = function PlatformModule_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _PlatformModule)();
@@ -91,9 +80,7 @@ function getSupportedInputTypes() {
   return supportedInputTypes;
 }
 
-// ../../node_modules/@angular/cdk/fesm2022/layout.mjs
-var import_rxjs = __toESM(require_cjs(), 1);
-var import_operators = __toESM(require_operators(), 1);
+// node_modules/@angular/cdk/fesm2022/layout.mjs
 var LayoutModule = class _LayoutModule {
   static ɵfac = function LayoutModule_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _LayoutModule)();
@@ -110,7 +97,7 @@ var LayoutModule = class _LayoutModule {
   }], null, null);
 })();
 
-// ../../node_modules/@angular/material/fesm2022/animation-DfMFjxHu.mjs
+// node_modules/@angular/material/fesm2022/animation-DfMFjxHu.mjs
 var MATERIAL_ANIMATIONS = new InjectionToken("MATERIAL_ANIMATIONS");
 function _animationsDisabled() {
   if (inject(MATERIAL_ANIMATIONS, { optional: true })?.animationsDisabled || inject(ANIMATION_MODULE_TYPE, { optional: true }) === "NoopAnimations") {
@@ -120,9 +107,14 @@ function _animationsDisabled() {
   return mediaMatcher.matchMedia("(prefers-reduced-motion)").matches;
 }
 
+// node_modules/@angular/cdk/fesm2022/coercion.mjs
+function coerceBooleanProperty(value) {
+  return value != null && `${value}` !== "false";
+}
+
 export {
-  coerceBooleanProperty,
   getSupportedInputTypes,
-  _animationsDisabled
+  _animationsDisabled,
+  coerceBooleanProperty
 };
-//# sourceMappingURL=chunk-KNRBHL6Q.js.map
+//# sourceMappingURL=chunk-OKJIODND.js.map

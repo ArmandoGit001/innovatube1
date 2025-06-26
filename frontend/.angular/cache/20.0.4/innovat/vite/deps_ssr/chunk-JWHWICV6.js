@@ -1,7 +1,7 @@
 import { createRequire } from 'module';const require = createRequire(import.meta.url);
 import {
   isPlatformBrowser
-} from "./chunk-TIJJFKFG.js";
+} from "./chunk-ZZVWCXOW.js";
 import {
   ApplicationRef,
   ElementRef,
@@ -13,9 +13,9 @@ import {
   inject,
   setClassMetadata,
   ɵɵdefineInjectable
-} from "./chunk-AKK7PD4G.js";
+} from "./chunk-CZ53B4YV.js";
 
-// ../../node_modules/@angular/cdk/fesm2022/platform-DNDzkVcI.mjs
+// node_modules/@angular/cdk/fesm2022/platform-DNDzkVcI.mjs
 var hasV8BreakIterator;
 try {
   hasV8BreakIterator = typeof Intl !== "undefined" && Intl.v8BreakIterator;
@@ -76,7 +76,7 @@ var Platform = class _Platform {
   }], () => [], null);
 })();
 
-// ../../node_modules/@angular/cdk/fesm2022/element-x4z00URv.mjs
+// node_modules/@angular/cdk/fesm2022/element-x4z00URv.mjs
 function coerceNumberProperty(value, fallbackValue = 0) {
   if (_isNumberValue(value)) {
     return Number(value);
@@ -90,7 +90,7 @@ function coerceElement(elementOrRef) {
   return elementOrRef instanceof ElementRef ? elementOrRef.nativeElement : elementOrRef;
 }
 
-// ../../node_modules/@angular/cdk/fesm2022/style-loader-B2sGQXxD.mjs
+// node_modules/@angular/cdk/fesm2022/style-loader-B2sGQXxD.mjs
 var appsWithLoaders = /* @__PURE__ */ new WeakMap();
 var _CdkPrivateStyleLoader = class __CdkPrivateStyleLoader {
   _appRef;
@@ -145,4 +145,4 @@ export {
   coerceElement,
   _CdkPrivateStyleLoader
 };
-//# sourceMappingURL=chunk-UBH6SQ7E.js.map
+//# sourceMappingURL=chunk-JWHWICV6.js.map
