@@ -80,5 +80,6 @@ def home():
     else:
         return redirect('/login')
 
+#function principal para iniciar el servidor
 if __name__ == '__main__':
     app.run(debug=True, port=8000)
