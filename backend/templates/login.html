@@ -1,0 +1,16 @@
+<form method="POST">
+    <h2>Iniciar Sesión</h2>
+    Usuario: <input type="text" name="user_name" required><br>
+    Contraseña: <input type="password" name="password" required><br>
+    <button type="submit">Entrar</button>
+</form>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
