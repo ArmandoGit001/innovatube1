@@ -1,12 +1,12 @@
 import {
+  BidiModule
+} from "./chunk-WUCZZIJ5.js";
+import {
   Platform,
   _CdkPrivateStyleLoader,
   coerceElement,
   coerceNumberProperty
-} from "./chunk-VROLV2RW.js";
-import {
-  BidiModule
-} from "./chunk-WUCZZIJ5.js";
+} from "./chunk-QV5AX4CR.js";
 import {
   APP_ID,
   BehaviorSubject,
@@ -2741,4 +2741,4 @@ export {
   _IdGenerator,
   MatCommonModule
 };
-//# sourceMappingURL=chunk-JF66M7Z6.js.map
+//# sourceMappingURL=chunk-XYBHFAEB.js.map

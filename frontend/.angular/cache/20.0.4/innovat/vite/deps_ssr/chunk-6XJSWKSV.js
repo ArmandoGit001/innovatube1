@@ -1,13 +1,13 @@
 import { createRequire } from 'module';const require = createRequire(import.meta.url);
 import {
+  BidiModule
+} from "./chunk-DU6KRZIO.js";
+import {
   Platform,
   _CdkPrivateStyleLoader,
   coerceElement,
   coerceNumberProperty
 } from "./chunk-JWHWICV6.js";
-import {
-  BidiModule
-} from "./chunk-DU6KRZIO.js";
 import {
   APP_ID,
   CSP_NONCE,
@@ -2742,14 +2742,14 @@ var MatCommonModule = class _MatCommonModule {
 })();
 
 export {
+  normalizePassiveListenerOptions,
+  _getEventTarget,
   isFakeMousedownFromScreenReader,
   isFakeTouchstartFromScreenReader,
-  _getEventTarget,
-  normalizePassiveListenerOptions,
   FocusMonitor,
   MediaMatcher,
   ObserversModule,
   _IdGenerator,
   MatCommonModule
 };
-//# sourceMappingURL=chunk-BFITGRD2.js.map
+//# sourceMappingURL=chunk-6XJSWKSV.js.map
