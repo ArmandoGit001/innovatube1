@@ -5,10 +5,12 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import uuid
 from flask import session
 from flask_cors import CORS 
+import requests
 
 app = Flask(__name__)
 app.secret_key = 'clave_secreta_segura'
 CORS(app)  # CORS desde angular
+YOUTUBE_API_KEY = 'AIzaSyDeHBLyeR0GmRrWBEZ76Eq5zMyYQU3ZRhs'
 
 client = MongoClient("mongodb+srv://martingonzalezmichaca:QnhhorA54NNdffN4@cluster0.bcjkjfz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 db = client['miapp']
@@ -71,6 +73,21 @@ def login():
 def logout():
     session.pop('usuario', None)
     return jsonify({"message": "Sesión cerrada."}), 200
+
+## -- Consumo de la API de youtube -- ##
+@app.route('/api/search')
+def youtube_search():
+    query = request.args.get('q', '')
+    url = f'https://www.googleapis.com/youtube/v3/search'
+    params = {
+        'part': 'snippet',
+        'q': query,
+        'type': 'video',
+        'maxResults': 10,
+        'key': YOUTUBE_API_KEY
+    }
+    response = requests.get(url, params=params)
+    return jsonify(response.json())
 
 @app.route('/')
 def home():
