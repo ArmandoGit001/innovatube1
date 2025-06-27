@@ -104,6 +104,10 @@ def home():
         return f"<h1>Bienvenido, {nombre}!</h1><br><a href='/logout'>Cerrar sesión</a>"
     else:
         return redirect('/login')
+    
+@app.route('/login', methods=['GET'])
+def login_get():
+    return jsonify({"message": "Aquí debería ir tu frontend Angular para login"})
 
 #function principal para iniciar el servidor
 #if __name__ == '__main__':
