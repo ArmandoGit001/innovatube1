@@ -1,3 +1,4 @@
+import os
 import certifi
 from flask import Flask, render_template, request, redirect, flash, jsonify
 from pymongo import MongoClient
