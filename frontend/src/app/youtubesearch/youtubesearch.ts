@@ -5,7 +5,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
-import { NgIf, NgFor } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
+
 
 @Component({
   selector: 'app-youtubesearch',
@@ -15,15 +16,15 @@ import { NgIf, NgFor } from '@angular/common';
     MatInputModule,
     MatCardModule,
     MatButtonModule,
-    NgIf,
-    NgFor
+    MatIconModule
   ],
   templateUrl: './youtubesearch.html',
   styleUrl: './youtubesearch.css'
 })
 export class Youtubesearch {
   query: string = '';
-  resultados: any[] = [];
+  resultados: any[] = [];//lista de videos en resultados
+  favoritos: any[] = [];  //guardaremos favoritos
 
   constructor(private youtubeService: YoutubeService) {}
 
@@ -33,13 +34,29 @@ export class Youtubesearch {
     console.log('Buscando:', this.query); // TESTING: Comment para verificación (buscando)
     this.youtubeService.buscarVideos(this.query).subscribe({
       next: (res) => {
-        console.log('Resultados:', res);  // TESTING: Comment para verificación de resultados
+        console.log('Resultados:', res);  // TESTING:Comment para verificación de resultados
         this.resultados = res.items;
       },
       error: (err) => {
         console.error('Error al buscar:', err);
       }
     });
+  }
+
+  esFavorito(video: any): boolean {
+    return this.favoritos.some(v => v.id.videoId === video.id.videoId);
+  }
+  
+  agregarAFavoritos(video: any): void {
+    if (this.esFavorito(video)) {
+      // Si ya es favorito, lo quitamos
+      this.favoritos = this.favoritos.filter(v => v.id.videoId !== video.id.videoId);
+      console.log('Eliminado de favoritos:', video);
+    } else {
+      // Si no es favorito, lo agregamos
+      this.favoritos.push(video);
+      console.log('Agregado a favoritos:', video);
+    }
   }
   
 }

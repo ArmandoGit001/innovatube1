@@ -18,3 +18,8 @@ mat-card-actions {
 .logo {
     height: 40px;
 }
+
+.loginToolbar{
+    background-color: #016e69;
+    color: white;
+}

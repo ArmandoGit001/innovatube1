@@ -1,14 +1,8 @@
-<mat-toolbar color="primary">
-    <button matIconButton class="menu-icon" aria-label="menu icon">
+<mat-toolbar class="navtoolbar">
+    <button mat-icon-button class="menu-icon" aria-label="menu icon">
         <mat-icon>menu</mat-icon>
     </button>
     <span>Bienvenido, {{ userName }}!</span>
-    <span style="flex: 1 1 auto;"></span>
-    <button mat-button color="accent" (click)="logout()">Cerrar sesión</button>
+    <span class="spacer"></span>
+    <button mat-button (click)="logout()">Cerrar sesión</button>
 </mat-toolbar>
-  
-<div style="padding: 2rem;">
-    <h2>Listo para agregar videos a tu lista de favoritos?</h2>
-    <p>Empieza por explorar nuevos videos:</p>
-</div>
-  

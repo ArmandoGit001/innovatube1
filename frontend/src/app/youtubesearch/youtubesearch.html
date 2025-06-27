@@ -1,22 +1,30 @@
 <div class="youtubesearchComponent" style="margin: 2rem;">
     <mat-form-field appearance="outline" style="width: 100%;">
-        <mat-label>Buscar en YouTube</mat-label>
-        <input matInput [(ngModel)]="query" placeholder="Ej. Angular, música, etc.">
+      <mat-label>Buscar en YouTube</mat-label>
+      <input matInput [(ngModel)]="query" placeholder="Ej. Grupo Castores, música, etc.">
     </mat-form-field>
   
     <button mat-raised-button color="primary" (click)="buscar()">Buscar</button>
   
-    <div *ngIf="resultados.length > 0" style="margin-top: 2rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1rem;">
-        <mat-card *ngFor="let video of resultados">
+    @if (resultados.length > 0) {
+      <div style="margin-top: 2rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1rem;">
+        @for (video of resultados; track video.id.videoId) {
+          <mat-card>
             <img mat-card-image [src]="video.snippet.thumbnails.medium.url" alt="Thumbnail">
             <mat-card-content>
-                <h3>{{ video.snippet.title }}</h3>
-                <p>{{ video.snippet.channelTitle }}</p>
+              <h3>{{ video.snippet.title }}</h3>
+              <p>{{ video.snippet.channelTitle }}</p>
             </mat-card-content>
             <mat-card-actions>
-                <a mat-button color="accent" [href]="'https://www.youtube.com/watch?v=' + video.id.videoId" target="_blank">Ver video</a>
+              <a mat-button color="accent" [href]="'https://www.youtube.com/watch?v=' + video.id.videoId" target="_blank">
+                Ver video
+              </a>
+              <button mat-icon-button [color]="esFavorito(video) ? 'warn' : 'primary'" (click)="agregarAFavoritos(video)" aria-label="Agregar a favoritos">
+                <mat-icon>{{ esFavorito(video) ? 'favorite' : 'favorite_border' }}</mat-icon>
+              </button>
             </mat-card-actions>
-        </mat-card>
-    </div>
-</div>
-  
+          </mat-card>
+        }
+      </div>
+    }
+  </div>  

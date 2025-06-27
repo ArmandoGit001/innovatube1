@@ -1,0 +1,21 @@
+.navtoolbar {
+    background-color: #016e69 !important;
+    color: white;
+  }
+  
+  .navtoolbar mat-icon {
+    color: white;
+  }
+  
+  .navtoolbar button {
+    color: white;
+  }
+  
+  .spacer {
+    flex: 1 1 auto;
+  }
+  
+  .welcome-container {
+    padding: 2rem;
+  }
+  
