@@ -8,11 +8,18 @@ from flask_cors import CORS
 import requests
 
 app = Flask(__name__)
-app.secret_key = 'clave_secreta_segura'
+#app.secret_key = 'clave_secreta_segura'
 CORS(app)  # CORS desde angular
-YOUTUBE_API_KEY = 'AIzaSyDeHBLyeR0GmRrWBEZ76Eq5zMyYQU3ZRhs'
+#YOUTUBE_API_KEY = 'AIzaSyDeHBLyeR0GmRrWBEZ76Eq5zMyYQU3ZRhs'
 
-client = MongoClient("mongodb+srv://martingonzalezmichaca:QnhhorA54NNdffN4@cluster0.bcjkjfz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+#actualizado para railway
+app.secret_key = os.environ.get("FLASK_SECRET_KEY", "default_key")
+YOUTUBE_API_KEY = os.environ.get("YOUTUBE_API_KEY")
+mongo_uri = os.environ.get("MONGO_URI")
+client = MongoClient(mongo_uri)
+
+#client = MongoClient("mongodb+srv://martingonzalezmichaca:QnhhorA54NNdffN4@cluster0.bcjkjfz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+
 db = client['miapp']
 usuarios = db['usuarios']
 
@@ -98,5 +105,10 @@ def home():
         return redirect('/login')
 
 #function principal para iniciar el servidor
+#if __name__ == '__main__':
+#    app.run(debug=True, port=8000)
+
+#añadido para railway:
 if __name__ == '__main__':
-    app.run(debug=True, port=8000)
+    port = int(os.environ.get("PORT", 8000))
+    app.run(debug=False, port=port, host="0.0.0.0")
