@@ -1,3 +1,4 @@
+from dotenv import load_dotenv
 import os
 import certifi
 from flask import Flask, render_template, request, redirect, flash, jsonify
@@ -7,6 +8,8 @@ import uuid
 from flask import session
 from flask_cors import CORS 
 import requests
+
+load_dotenv()  # Esto carga las variables de .env al entorno
 
 app = Flask(__name__)
 #app.secret_key = 'clave_secreta_segura'
