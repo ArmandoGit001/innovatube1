@@ -19,8 +19,9 @@ CORS(app)  # CORS desde angular
 #actualizado para railway
 app.secret_key = os.environ.get("FLASK_SECRET_KEY", "default_key")
 YOUTUBE_API_KEY = os.environ.get("YOUTUBE_API_KEY")
+
 mongo_uri = os.environ.get("MONGO_URI")
-client = MongoClient(mongo_uri)
+client = MongoClient(mongo_uri, tls=True, tlsCAFile=certifi.where())
 
 #client = MongoClient("mongodb+srv://martingonzalezmichaca:QnhhorA54NNdffN4@cluster0.bcjkjfz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 

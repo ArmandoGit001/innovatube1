@@ -10,6 +10,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router } from '@angular/router';
 
+import { environment } from '../../enviroments/enviroment'; //importamos enviroment para la url del backend
 
 @Component({
   selector: 'app-login',
@@ -27,6 +28,8 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   loginForm;
 
+  private apiUrl = environment.apiUrl;
+
   constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) {
     this.loginForm = this.fb.group({
       user_name: ['', Validators.required],
@@ -36,7 +39,7 @@ export class LoginComponent {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      this.http.post('http://localhost:8000/login', this.loginForm.value).subscribe({
+      this.http.post(`${this.apiUrl}/login`, this.loginForm.value).subscribe({
         next: res => {
           alert('Login exitoso');
           console.log(res);

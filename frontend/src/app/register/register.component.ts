@@ -10,6 +10,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 
+import { environment } from '../../enviroments/enviroment'; //importamos enviroment para la url del backend
+
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -28,6 +30,7 @@ import { MatCardModule } from '@angular/material/card';
 export class RegisterComponent {
   form: FormGroup;
   mensaje: string = '';
+  private apiUrl = environment.apiUrl;  // <-- URL base desde environment
 
   constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) {
     this.form = this.fb.group({
@@ -50,7 +53,7 @@ export class RegisterComponent {
   onSubmit() {
     if (this.form.valid) {
       const { password2, ...data } = this.form.value; // excluye password2
-      this.http.post('http://localhost:8000/registro', data).subscribe({
+      this.http.post(`${this.apiUrl}/registro`, data).subscribe({
         next: (res: any) => {
           this.mensaje = res.message;
           alert('Usuario registrado exitosamente');

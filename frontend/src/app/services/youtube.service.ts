@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../enviroments/enviroment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class YoutubeService {
-  private apiUrl = 'http://localhost:8000/api/search';
+  private apiUrl = `${environment.apiUrl}/api/search`;
 
   constructor(private http: HttpClient) {}
 
