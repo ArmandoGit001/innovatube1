@@ -24,7 +24,7 @@ mongo_uri = os.environ.get("MONGO_URI")
 client = MongoClient(mongo_uri, tls=True, tlsCAFile=certifi.where())
 
 #client = MongoClient("mongodb+srv://martingonzalezmichaca:QnhhorA54NNdffN4@cluster0.bcjkjfz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
-
+ 
 db = client['miapp']
 usuarios = db['usuarios']
 
