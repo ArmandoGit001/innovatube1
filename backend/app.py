@@ -12,5 +12,5 @@ def login_get():
 
 if __name__ == '__main__':
     import os
-    port = int(os.environ.get("PORT", 8080))  # 8080 o 8000 según Railway
+    port = int(os.environ.get("PORT", 8080))
     app.run(host='0.0.0.0', port=port)
