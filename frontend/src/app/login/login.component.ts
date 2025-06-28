@@ -10,7 +10,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router } from '@angular/router';
 
-import { environment } from '../../enviroments/enviroment'; //importamos enviroment para la url del backend
+import { environment } from '../../environments/environment'; //importamos enviroment para la url del backend
 
 @Component({
   selector: 'app-login',

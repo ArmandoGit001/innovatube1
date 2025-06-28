@@ -10,7 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 
-import { environment } from '../../enviroments/enviroment'; //importamos enviroment para la url del backend
+import { environment } from '../../environments/environment'; //importamos enviroment para la url del backend
 
 @Component({
   selector: 'app-register',
