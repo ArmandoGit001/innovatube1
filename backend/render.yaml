@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: innovatube-backend
+    env: python
+    buildCommand: ""
+    startCommand: gunicorn app:app
+    envVars:
+      - key: FLASK_SECRET_KEY
+        value: clave_secreta_segura
+      - key: MONGO_URI
+        value: mongodb+srv://martingonzalezmichaca:QnhhorA54NNdffN4@cluster0.bcjkjfz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+      - key: YOUTUBE_API_KEY
+        value: AIzaSyDeHBLyeR0GmRrWBEZ76Eq5zMyYQU3ZRhs
