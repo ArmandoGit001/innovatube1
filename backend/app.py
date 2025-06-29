@@ -1,9 +1,9 @@
-from dotenv import load_dotenv
+from dotenv import load_dotenv  #para usar archivo .env en el deployment
 import os
 import certifi
 from flask import Flask, render_template, request, redirect, flash, jsonify
 from pymongo import MongoClient
-from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash   #para encriptar password
 import uuid
 from flask import session
 from flask_cors import CORS 
@@ -13,13 +13,13 @@ load_dotenv()  # Esto carga las variables de .env al entorno
 
 app = Flask(__name__)
 #app.secret_key = 'clave_secreta_segura'
-CORS(app)  # CORS desde angular
 #YOUTUBE_API_KEY = 'AIzaSyDeHBLyeR0GmRrWBEZ76Eq5zMyYQU3ZRhs'
 
-#actualizado para railway
+CORS(app)  # CORS desde angular
+
+#actualizado para railway, llaves guardadaas en .env
 app.secret_key = os.environ.get("FLASK_SECRET_KEY", "default_key")
 YOUTUBE_API_KEY = os.environ.get("YOUTUBE_API_KEY")
-
 mongo_uri = os.environ.get("MONGO_URI")
 client = MongoClient(mongo_uri, tls=True, tlsCAFile=certifi.where())
 
@@ -38,7 +38,7 @@ def registro():
     email = data.get('email')
     password = data.get('password')
     
-    if usuarios.find_one({'user_name': user_name}):
+    if usuarios.find_one({'user_name': user_name}) or usuarios.find_one({'email':email}):
         return jsonify({"message": "Este usuario ya está registrado."}), 400
     
     hash_pass = generate_password_hash(password)
@@ -49,7 +49,8 @@ def registro():
         "last_name": last_name,
         "user_name": user_name,
         "email": email,
-        "password": hash_pass
+        "password": hash_pass,
+        "favoritos": []
     }
     
     usuarios.insert_one(nuevo_usuario)
@@ -111,7 +112,50 @@ def home():
     
 @app.route('/login', methods=['GET'])
 def login_get():
-    return jsonify({"message": "Aquí debería ir tu frontend Angular para login"})
+    return jsonify({"message": "Aquí debe ir tu frontend Angular para login"})
+
+## -- Agregar videos favoritos -- ##
+@app.route('/api/favoritos', methods=['POST'])
+def agregar_favorito():
+    data = request.get_json()
+    user_name = data.get('user_name')
+    video = data.get('video')  # dict con videoId, title, etc.
+
+    if not user_name or not video:
+        return jsonify({"error": "Datos incompletos"}), 400
+
+    usuarios.update_one(
+        {'user_name': user_name},
+        {'$addToSet': {'favoritos': video}}
+    )
+    return jsonify({"message": "Video agregado a favoritos"}), 200
+
+## -- Obtener videos favoritos -- ##
+@app.route('/api/favoritos/<user_name>', methods=['GET'])
+def obtener_favoritos(user_name):
+    user = usuarios.find_one({'user_name': user_name}, {'favoritos': 1, '_id': 0})
+    favoritos = user.get('favoritos', []) if user else []
+    return jsonify(favoritos)
+
+## -- Borrar favoritos -- ##
+@app.route('/api/favoritos', methods=['DELETE'])
+def eliminar_favorito():
+    data = request.get_json()
+    user_name = data.get('user_name')
+    video_id = data.get('videoId')
+
+    if not user_name or not video_id:
+        return jsonify({"error": "Datos incompletos"}), 400
+
+    resultado = usuarios.update_one(
+        {'user_name': user_name},
+        {'$pull': {'favoritos': {'videoId': video_id}}}
+    )
+
+    if resultado.modified_count > 0:
+        return jsonify({"message": "Video eliminado de favoritos"}), 200
+    else:
+        return jsonify({"message": "Video no estaba en favoritos"}), 404
 
 #function principal para iniciar el servidor
 #if __name__ == '__main__':

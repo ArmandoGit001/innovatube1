@@ -19,7 +19,7 @@
               <a mat-button color="accent" [href]="'https://www.youtube.com/watch?v=' + video.id.videoId" target="_blank">
                 Ver video
               </a>
-              <button mat-icon-button [color]="esFavorito(video) ? 'warn' : 'primary'" (click)="agregarAFavoritos(video)" aria-label="Agregar a favoritos">
+              <button mat-icon-button [color]="esFavorito(video) ? 'red' : 'primary'" (click)="agregarAFavoritos(video)" aria-label="Agregar a favoritos">
                 <mat-icon>{{ esFavorito(video) ? 'favorite' : 'favorite_border' }}</mat-icon>
               </button>
             </mat-card-actions>

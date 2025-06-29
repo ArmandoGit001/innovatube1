@@ -1,0 +1,27 @@
+<div class="favoritosContainer" style="margin: 2rem;">
+    <h2>Mis videos favoritos</h2>
+  
+    @if (favoritos.length === 0) {
+      <p>No tienes videos favoritos aún.</p>
+    } @else {
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1rem;">
+        @for (video of favoritos; track video.videoId) {
+          <mat-card>
+            <img mat-card-image [src]="video.thumbnail" alt="Thumbnail">
+            <mat-card-content>
+              <h3>{{ video.title }}</h3>
+              <p>{{ video.channel }}</p>
+            </mat-card-content>
+            <mat-card-actions>
+              <a mat-button color="accent" [href]="'https://www.youtube.com/watch?v=' + video.videoId" target="_blank">
+                Ver video
+              </a>
+              <button mat-icon-button color="warn" (click)="eliminarFavorito(video.videoId)" aria-label="Eliminar de favoritos">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        }
+      </div>
+    }
+  </div>

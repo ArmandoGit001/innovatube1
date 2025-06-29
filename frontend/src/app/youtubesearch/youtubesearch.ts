@@ -44,19 +44,60 @@ export class Youtubesearch {
   }
 
   esFavorito(video: any): boolean {
-    return this.favoritos.some(v => v.id.videoId === video.id.videoId);
-  }
-  
-  agregarAFavoritos(video: any): void {
-    if (this.esFavorito(video)) {
-      // Si ya es favorito, lo quitamos
-      this.favoritos = this.favoritos.filter(v => v.id.videoId !== video.id.videoId);
-      console.log('Eliminado de favoritos:', video);
-    } else {
-      // Si no es favorito, lo agregamos
-      this.favoritos.push(video);
-      console.log('Agregado a favoritos:', video);
+    const videoId = video?.id?.videoId || video?.videoId;
+    return this.favoritos.some(v => v.videoId === videoId);
+  }  
+
+  //cargar favoritos previamente guardados
+  ngOnInit(): void {
+    const user_name = localStorage.getItem('user_name');
+    if (user_name) {
+      this.youtubeService.getFavoritos(user_name).subscribe({
+        next: (data) => {
+          this.favoritos = data;
+          console.log('Favoritos cargados:', this.favoritos);
+        },
+        error: (err) => {
+          console.error('Error al cargar favoritos:', err);
+        }
+      });
     }
   }
   
+  
+  //Agregar favoritos
+  agregarAFavoritos(video: any): void {
+    const user_name = localStorage.getItem('user_name');
+    if (!user_name) return;
+  
+    const videoId = video.id?.videoId || video.videoId;
+  
+    if (this.esFavorito(video)) {
+      this.favoritos = this.favoritos.filter(v => v.videoId !== videoId);
+  
+      this.youtubeService.eliminarFavorito(user_name, videoId).subscribe({
+        next: () => console.log('Favorito eliminado en backend'),
+        error: err => console.error('Error al eliminar favorito:', err)
+      });
+    } else {
+      const videoFavorito = {
+        videoId,
+        title: video.snippet?.title || video.title,
+        thumbnail: video.snippet?.thumbnails?.medium?.url || video.thumbnail,
+        channel: video.snippet?.channelTitle || video.channel
+      };
+  
+      this.favoritos.push(videoFavorito);
+  
+      this.youtubeService.addFavorito(user_name, videoFavorito).subscribe({
+        next: () => console.log('Favorito guardado en backend'),
+        error: err => console.error('Error al guardar favorito:', err)
+      });
+    }
+  }
+  
+  
+  trackByVideoId(index: number, video: any): string {
+    return video?.id?.videoId || video?.videoId || index.toString();
+  }
 }

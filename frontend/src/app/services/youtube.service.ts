@@ -16,4 +16,19 @@ export class YoutubeService {
     const params = new HttpParams().set('q', query);
     return this.http.get(this.apiUrl, { params });
   }
+
+  addFavorito(user_name: string, video: any) {
+    return this.http.post(`${environment.apiUrl}/api/favoritos`, { user_name, video });
+  }
+  
+  getFavoritos(user_name: string) {
+    return this.http.get<any[]>(`${environment.apiUrl}/api/favoritos/${user_name}`);
+  }
+
+  eliminarFavorito(user_name: string, videoId: string) {
+    return this.http.request('delete', `${environment.apiUrl}/api/favoritos`, {
+      body: { user_name, videoId }
+    });
+  }
+  
 }

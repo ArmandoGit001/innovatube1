@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { NavigationComponent } from '../navigation/navigation';
-import { Youtubesearch } from '../youtubesearch/youtubesearch';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  imports: [NavigationComponent,Youtubesearch],
+  imports: [NavigationComponent,RouterOutlet],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
