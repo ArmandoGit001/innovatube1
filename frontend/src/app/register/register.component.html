@@ -30,16 +30,18 @@
         <mat-label>Repetir Contraseña</mat-label>
         <input matInput formControlName="password2" type="password" required />
       </mat-form-field>
-  
-      <p *ngIf="form.errors?.['noCoinciden']" style="color:red">
-        Las contraseñas no coinciden.
-      </p>
+
+      @if (form.errors?.['noCoinciden']) {
+        <p style="color:red">Las contraseñas no coinciden.</p>
+      }
   
       <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
         Registrarse
       </button>
     </form>
   
-    <p *ngIf="mensaje">{{ mensaje }}</p>
+    @if (mensaje) {
+      <p>{{ mensaje }}</p>
+    }
   </mat-card>
   

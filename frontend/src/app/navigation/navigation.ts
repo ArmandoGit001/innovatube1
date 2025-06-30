@@ -12,7 +12,7 @@ import { MatMenuModule } from '@angular/material/menu';
   styleUrl: './navigation.css'
 })
 export class NavigationComponent {
-  router = inject(Router);
+  router = inject(Router);    //inject instead of constructor
   userName: string | null = '';
 
   ngOnInit(){

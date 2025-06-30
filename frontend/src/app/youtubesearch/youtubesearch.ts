@@ -32,7 +32,7 @@ export class Youtubesearch {
     if (!this.query.trim()) return;
 
     console.log('Buscando:', this.query); // TESTING: Comment para verificación (buscando)
-    this.youtubeService.buscarVideos(this.query).subscribe({
+    this.youtubeService.buscarVideos(this.query).subscribe({  //llamamos al servicio para que haga get al backend
       next: (res) => {
         console.log('Resultados:', res);  // TESTING:Comment para verificación de resultados
         this.resultados = res.items;
